@@ -87,7 +87,7 @@
                 category: 'uv',
                 condition: () => UVEditor.isFaceUV() && UVEditor.hasElements(),
                 click: function (event) {
-                        align(true, false, true)
+                        align(true, false)
                 }
             })
             button_y = new Action('uv_pixel_align_y', {
@@ -97,7 +97,7 @@
                 category: 'uv',
                 condition: () => UVEditor.isFaceUV() && UVEditor.hasElements(),
                 click: function (event) {
-                        align(false, true, true)
+                        align(false, true)
                 }
             })
             button_both = new Action('uv_pixel_align_both', {
