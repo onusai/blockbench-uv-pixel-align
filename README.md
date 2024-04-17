@@ -1,6 +1,6 @@
 # Blockbench UV Pixel Align
  
-This plugin allows you to align faces in the UV editor to the pixel grid, by using a vertex (or multiple) as the anchor. When a vertex is aligned, all selected faces will move along with it.
+This plugin allows you to align multiple selected faces in the UV editor to the pixel grid, by using a vertex (or multiple) as the anchor. When a vertex is aligned, all selected faces will move along with it.
 
 #### Usage
 - Download plugin file [uv_pixel_align.js](uv_pixel_align.js "download") and install
@@ -26,7 +26,7 @@ This plugin allows you to align faces in the UV editor to the pixel grid, by usi
 ### Now, I want to keep it aligned to the center on the X axis, but for the Y axis to be aligned to the grid. I clicked the "UV Pixel Align Center Toggle" to disable center snapping, then clicked the "UV Pixel Align Y" to snap along only the Y axis.
 ![Image 0](img/6.png)
 ***
-### Note: When moving faces manually, the vertex gets deselected. If the align buttons aren't doing anything, make sure a vertex is selected.
+### Note: When moving faces manually, selected vertices gets deselected. If the align buttons aren't doing anything, make sure a vertex is selected.
 ### Note: When multiple vertices are selected, the anchor will be the average of their position.
 ### Note: On Cube objects, you cant select a vertex in the UV editor, so just select the face and it will use the top left vertex as the anchor.
 
