@@ -11,7 +11,7 @@
         return (Math.round(value / toNearest) * toNearest).toFixed(fixed);
       }
 
-    function align(align_x, align_y, center=false) {
+    function align(align_x, align_y) {
         let elements = UVEditor.getMappableElements();
         Undo.initEdit({elements, uv_only: true})
         for (let element of elements) {
@@ -33,7 +33,6 @@
                         }
                     }
                 } else if (element instanceof Cube) {
-                    console.log(`${face.uv[0]}, ${face.uv[1]}, ${face.uv[2]}, ${face.uv[3]}`)
                     x = face.uv[0];
                     y = face.uv[1];
                 }
@@ -60,12 +59,10 @@
                         }
                     })
                 } else if (element instanceof Cube) {
-                    console.log(`${face.uv[0]}, ${face.uv[1]}, ${face.uv[2]}, ${face.uv[3]}`)
                     face.uv[0] = Math.clamp(face.uv[0]+dX, 0, UVEditor.getUVWidth());
                     face.uv[1] = Math.clamp(face.uv[1]+dY, 0, UVEditor.getUVHeight());
                     face.uv[2] = Math.clamp(face.uv[2]+dX, 0, UVEditor.getUVWidth());
                     face.uv[3] = Math.clamp(face.uv[3]+dY, 0, UVEditor.getUVHeight());
-                    console.log(`${face.uv[0]}, ${face.uv[1]}, ${face.uv[2]}, ${face.uv[3]}`)
                 }
             })
             element.preview_controller.updateUV(element);
@@ -119,7 +116,6 @@
                 condition: () => UVEditor.isFaceUV() && UVEditor.hasElements(),
                 click: function (event) {
                     center_toggled = !center_toggled;
-                    console.log(center_toggled)
                 }
             })
             MenuBar.addAction(button_x, 'uv');
