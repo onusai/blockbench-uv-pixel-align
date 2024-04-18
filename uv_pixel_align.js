@@ -5,7 +5,9 @@
     let button_y;
     let button_both;
     let toggle_center;
+    let toggle_vert_only;
     let center_toggled = false;
+    let vert_only_toggled = false;
 
     function roundFloat(value, toNearest, fixed){
         return (Math.round(value / toNearest) * toNearest).toFixed(fixed);
@@ -53,7 +55,8 @@
                 let face = element.faces[fkey];
                 if (element instanceof Mesh) {
                     face.vertices.forEach(vkey => {
-                        if (face.uv[vkey]) {
+                        let cond = vert_only_toggled ? selected_vertices.includes(vkey) : true;
+                        if (face.uv[vkey] && cond) {
                             if (align_x) face.uv[vkey][0] = Math.clamp(face.uv[vkey][0]+dX, 0, UVEditor.getUVWidth());
                             if (align_y) face.uv[vkey][1] = Math.clamp(face.uv[vkey][1]+dY, 0, UVEditor.getUVHeight());
                         }
@@ -118,17 +121,27 @@
                     center_toggled = !center_toggled;
                 }
             })
+            toggle_vert_only = new Action("uv_pixel_align_vert",{
+                icon: 'filter_center_focus',
+                name: 'UV Pixel Align Vertex Only Toggle',
+                category: 'uv',
+                condition: () => UVEditor.isFaceUV() && UVEditor.hasElements(),
+                click: function (event) {
+                    vert_only_toggled = !vert_only_toggled;
+                }
+            })
             MenuBar.addAction(button_x, 'uv');
             MenuBar.addAction(button_y, 'uv');
             MenuBar.addAction(button_both, 'uv');
             MenuBar.addAction(toggle_center, 'uv');
-            
+            MenuBar.addAction(toggle_vert_only, 'uv');
         },
         onunload() {
             button_x.delete();
             button_y.delete();
             button_both.delete();
             toggle_center.delete();
+            toggle_vert_only.delete();
         }
     });
 
